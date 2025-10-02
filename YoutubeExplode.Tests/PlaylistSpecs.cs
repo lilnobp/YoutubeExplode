@@ -42,8 +42,8 @@ public class PlaylistSpecs(ITestOutputHelper testOutput)
         var youtube = new YoutubeClient();
 
         // Act & assert
-        var ex = await Assert.ThrowsAsync<PlaylistUnavailableException>(
-            async () => await youtube.Playlists.GetAsync(PlaylistIds.Private)
+        var ex = await Assert.ThrowsAsync<PlaylistUnavailableException>(async () =>
+            await youtube.Playlists.GetAsync(PlaylistIds.Private)
         );
 
         testOutput.WriteLine(ex.ToString());
@@ -56,8 +56,8 @@ public class PlaylistSpecs(ITestOutputHelper testOutput)
         var youtube = new YoutubeClient();
 
         // Act & assert
-        var ex = await Assert.ThrowsAsync<PlaylistUnavailableException>(
-            async () => await youtube.Playlists.GetAsync(PlaylistIds.NonExisting)
+        var ex = await Assert.ThrowsAsync<PlaylistUnavailableException>(async () =>
+            await youtube.Playlists.GetAsync(PlaylistIds.NonExisting)
         );
 
         testOutput.WriteLine(ex.ToString());
@@ -97,7 +97,7 @@ public class PlaylistSpecs(ITestOutputHelper testOutput)
         var videos = await youtube.Playlists.GetVideosAsync(PlaylistIds.Normal);
 
         // Assert
-        videos.Should().HaveCountGreaterOrEqualTo(21);
+        videos.Should().HaveCountGreaterThanOrEqualTo(21);
         videos
             .Select(v => v.Id.Value)
             .Should()
@@ -138,7 +138,7 @@ public class PlaylistSpecs(ITestOutputHelper testOutput)
         var videos = await youtube.Playlists.GetVideosAsync(PlaylistIds.Large);
 
         // Assert
-        videos.Should().HaveCountGreaterOrEqualTo(1900);
+        videos.Should().HaveCountGreaterThanOrEqualTo(1900);
         videos
             .Select(v => v.Id.Value)
             .Should()
