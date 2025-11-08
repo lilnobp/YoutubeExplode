@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/nuget/v/YoutubeExplode.Converter.svg)](https://nuget.org/packages/YoutubeExplode.Converter)
 [![Downloads](https://img.shields.io/nuget/dt/YoutubeExplode.Converter.svg)](https://nuget.org/packages/YoutubeExplode.Converter)
 
-**YoutubeExplode.Converter** is an extension package for **YoutubeExplode** that provides the capability to download YouTube videos by muxing separate streams into a single file.
+**YoutubeExplode.Converter** is an extension package for **YoutubeExplode** that provides the capability to download YouTube videos into a single file by fetching individual streams and muxing them.
 This package relies on [FFmpeg](https://ffmpeg.org) under the hood.
 
 ## Install
@@ -28,7 +28,7 @@ For example, to download a video in the specified format using the highest quali
 using YoutubeExplode;
 using YoutubeExplode.Converter;
 
-var youtube = new YoutubeClient();
+using var youtube = new YoutubeClient();
 
 var videoUrl = "https://youtube.com/watch?v=u_yIGGhubZs";
 await youtube.Videos.DownloadAsync(videoUrl, "video.mp4");
@@ -51,7 +51,7 @@ To configure various aspects of the conversion process, use the following overlo
 using YoutubeExplode;
 using YoutubeExplode.Converter;
 
-var youtube = new YoutubeClient();
+using var youtube = new YoutubeClient();
 var videoUrl = "https://youtube.com/watch?v=u_yIGGhubZs";
 
 await youtube.Videos.DownloadAsync(videoUrl, "video.mp4", o => o
@@ -71,7 +71,7 @@ using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
 using YoutubeExplode.Converter;
 
-var youtube = new YoutubeClient();
+using var youtube = new YoutubeClient();
 
 // Get stream manifest
 var videoUrl = "https://youtube.com/watch?v=u_yIGGhubZs";
